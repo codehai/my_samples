@@ -1,8 +1,14 @@
+#### 结果
+
+![image](https://user-images.githubusercontent.com/58416451/112970732-17bcf400-9181-11eb-9bcf-1b86eadd115e.png)
+
 #### 打包
 
 ```
 pip install -r requirments.txt
 pyinstaller -F -w .\main.py
+
+
 ```
 
 #### 问题
