@@ -1,0 +1,3 @@
+Faker==7.0.1
+Gooey==1.0.8
+PyInstaller==3.6
