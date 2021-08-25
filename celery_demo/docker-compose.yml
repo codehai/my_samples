@@ -1,0 +1,36 @@
+version: "3.3"
+services:
+
+  queue:
+    image: rabbitmq:3
+    networks:
+        - default
+  
+  flower:
+    image: '${DOCKER_IMAGE_FLOWER?Variable not set}:${TAG-latest}'
+    depends_on:
+        - celeryworker
+    networks:
+      - default
+    env_file:
+      - .env
+    ports:
+      - "5555:5555"
+    build:
+      context: ./app
+      dockerfile: flower.dockerfile
+  
+  celeryworker:
+    image: '${DOCKER_IMAGE_CELERYWORKER?Variable not set}:${TAG-latest}'
+    depends_on:
+      - queue
+    env_file:
+      - .env
+
+    build:
+      context: ./app
+      dockerfile: celeryworker.dockerfile
+    networks:
+      - default
+networks:
+  default:
